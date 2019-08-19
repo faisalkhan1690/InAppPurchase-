@@ -1,4 +1,4 @@
-package com.inapppurchase;
+package com.faisal.inapppurchase;
 
 import com.facebook.react.ReactActivity;
 
