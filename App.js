@@ -19,19 +19,19 @@ import RNIap, {
 
 const itemSkus = Platform.select({
   ios: [
-    'buy_full_product_01',
+    'buy_full_product_02','buy_full_product_03','buy_full_product_04','buy_full_product_05'
   ],
   android: [
-    'buy_full_product_05','buy_full_product_11',
+    'buy_full_product_11'
   ],
 });
 
 const itemSubs = Platform.select({
   ios: [
-    'buy_full_product_01',
+    'buy_full_product_02','buy_full_product_03','buy_full_product_04','buy_full_product_05'
   ],
   android: [
-    'buy_full_product_01', // subscription
+    'buy_full_product_11'
   ],
 });
 
@@ -53,7 +53,7 @@ class Page extends Component {
     try {
       const result = await RNIap.initConnection();
       await RNIap.consumeAllItemsAndroid();
-      console.log('result', result);
+      console.warn('result', result);
     } catch (err) {
       console.warn(err.code, err.message);
     }
@@ -95,7 +95,7 @@ class Page extends Component {
   getItems = async() => {
     try {
       // const products = await RNIap.getProducts(itemSkus);
-      const products = await RNIap.getSubscriptions(itemSkus);
+      const products = await RNIap.getSubscriptions(itemSubs);
       console.warn('Products', products);
       this.setState({ productList: products });
     } catch (err) {
@@ -107,7 +107,6 @@ class Page extends Component {
   getSubscriptions = async() => {
     try {
       const products = await RNIap.getSubscriptions(itemSubs);
-      console.log('Products', products);
       this.setState({ productList: products });
     } catch (err) {
       console.warn(err.code, err.message);
